@@ -23,7 +23,7 @@
 		<td></td><td></td>
 		<td><big><b>Search Reference:</b></big></td>
 		<td><select name="refer" required>
-			<option value="name">Title</option>
+			<option value="Title">Title</option>
 			<option value="desc">Description</option>
 			<option value="date">CreateDate</option>
 			<option value="date">UpdateDate</option>
@@ -38,7 +38,7 @@
 	<table>
 	    <tr id="row">
 	    	<th class="status">Status</th>
-	    	<th class="name">Title</th>
+	    	<th class="Title">Title</th>
 	    	<th class="desc">Description</th>
 			<th class="created_at">CreateDate</th>
 			<th class="updated_at">UpdateDate</th>
@@ -47,8 +47,8 @@
 	    </tr>
 	{% for todo in todos %}
 		<tr class="datas">
-			<td><a href="./done?_id={{ todo['_id'] }}"><input type="image" src="static/images/{{todo['done']}}.png" alt="Submit ME"></a></td>
-			<td class="name">{{ todo["name"] }}</td>
+			<td><a href="./is_completed?_id={{ todo['_id'] }}"><input type="image" src="static/images/{{todo['is_completed']}}.png" alt="Submit ME"></a></td>
+			<td class="Title">{{ todo["Title"] }}</td>
 			<td class="desc">{{ todo["desc"] }}</td>
 			<td class="created_at">{{ todo["created_at"] }}</td>
 			<td class="updated_at">{{ todo["updated_at"] }}</td>
@@ -67,7 +67,7 @@
 			<td><b><big><label>Add a Task : </label></big></b></td>
 		</tr>
 		<tr>
-		<td><input type="text" name="name"  placeholder="Title" /></td>
+		<td><input type="text" name="Title"  placeholder="Title" /></td>
 		<td><textarea name="desc" rows="1" cols="50" placeholder="Enter Description here..." required></textarea></td>
 		<td><button type="submit"> Create </button></td>
 		</tr>

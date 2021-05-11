@@ -35,9 +35,9 @@ def getTodos():
 	todoList = []
 
 	for todo in Todos:
-		todoList.append({"_id":str(todo["_id"]),"name":todo["name"],
+		todoList.append({"_id":str(todo["_id"]),"Title":todo["Title"],
 				   "desc":todo["desc"],"created_at":todo["created_at"],
-				   "updated_at":todo["updated_at"],"done":todo["done"]})
+				   "updated_at":todo["updated_at"],"is_completed":todo["is_completed"]})
 
 	return jsonify({"results":todoList})
 
@@ -45,13 +45,13 @@ def getTodos():
 @app.route("/addTodo", methods=['POST'])
 def addTodo():
 	#Adding a Task
-	name = request.json["name"]
+	Title = request.json["Title"]
 	desc = request.json["desc"]
 	created_at = datetime.datetime.now()#request.json["created_at"]
 	
 
 	try:
-		todos.insert({ "name":name, "desc":desc, "created_at":created_at,"updated_at":"", "done":"no"})
+		todos.insert({ "Title":Title, "desc":desc, "created_at":created_at,"updated_at":"", "is_completed":False})
 		return "Added a todo"
 	except:
 		return "Could not add todo"
@@ -59,12 +59,12 @@ def addTodo():
 #-------------------------UPDATE TODO-------------------------------------
 @app.route("/updateTodo/<id>", methods=['PUT'])
 def updateTodo(id):
-	name = request.json["name"] ## son
+	Title = request.json["Title"] ## son
 	desc = request.json["desc"]
 	updated_at = datetime.datetime.now()#request.json["updated_at"]
-	done = request.json["done"]
+	is_completed = request.json["is_completed"]
 	try:
-		todos.update({"_id":ObjectId(id)}, {'$set':{ "name":name, "desc":desc,"updated_at":updated_at ,"done":done}})
+		todos.update({"_id":ObjectId(id)}, {'$set':{ "Title":Title, "desc":desc,"updated_at":updated_at ,"is_completed":is_completed}})
 		return "Updated todo"
 
 	except:
@@ -98,7 +98,7 @@ def lists():
 @app.route("/uncompleted")
 def tasks():
 	#Display the Uncompleted Tasks
-	todos_l = todos.find({"done":"no"})
+	todos_l = todos.find({"is_completed":False})
 	a2 = "active"
 	return render_template('index.html',a2=a2,todos=todos_l,t=title,h=heading)
 
@@ -106,19 +106,19 @@ def tasks():
 @app.route("/completed")
 def completed():
 	#Display the Completed Tasks
-	todos_l = todos.find({"done":"yes"})
+	todos_l = todos.find({"is_completed":True})
 	a3 = "active"
 	return render_template('index.html',a3=a3,todos=todos_l,t=title,h=heading)
 
-@app.route("/done")
+@app.route("/is_completed")
 def done():
 	#Done-or-not ICON
 	id = request.values.get("_id")
 	task = todos.find({"_id":ObjectId(id)})
-	if(task[0]["done"] == "yes"):
-		todos.update({"_id":ObjectId(id)}, {"$set": {"done":"no"}})
+	if(task[0]["is_completed"] == True):
+		todos.update({"_id":ObjectId(id)}, {"$set": {"is_completed":False}})
 	else:
-		todos.update({"_id":ObjectId(id)}, {"$set": {"done":"yes"}})
+		todos.update({"_id":ObjectId(id)}, {"$set": {"is_completed":True}})
 	redir = redirect_url()	
 
 	return redirect(redir)
@@ -126,11 +126,11 @@ def done():
 @app.route("/action", methods=['POST'])
 def action():
 	#Adding a Task
-	name = request.values.get("name")
+	Title = request.values.get("Title")
 	desc = request.values.get("desc")
 	created_at = datetime.datetime.now()#request.values.get("created_at")
 	#updated_at = ""#datetime.datetime.now()#request.values.get("updated_at")
-	todos.insert({ "name":name, "desc":desc, "created_at":created_at, "done":"no"})
+	todos.insert({ "Title":Title, "desc":desc, "created_at":created_at, "is_completed":False})
 	return redirect("/list")
 
 
@@ -152,12 +152,12 @@ def update():
 @app.route("/action3", methods=['POST'])
 def action3():
 	#Updating a Task with various references
-	name = request.values.get("name")
+	Title = request.values.get("Title")
 	desc = request.values.get("desc")
 	#created_at = request.values.get("created_at")
 	updated_at = datetime.datetime.now()#request.values.get("updated_at")
 	id = request.values.get("_id")
-	todos.update({"_id":ObjectId(id)}, {'$set':{ "name":name, "desc":desc, "updated_at":updated_at }})
+	todos.update({"_id":ObjectId(id)}, {'$set':{ "Title":Title, "desc":desc, "updated_at":updated_at }})
 	return redirect("/")
 
 @app.route("/search", methods=['GET'])

@@ -35,8 +35,8 @@
     <Content Include="TodoAppZek\static\assets\emoji.js" />
     <Content Include="TodoAppZek\static\assets\style.css" />
     <Content Include="TodoAppZek\static\assets\twemoji.min.js" />
-    <Content Include="TodoAppZek\static\images\no.png" />
-    <Content Include="TodoAppZek\static\images\yes.png" />
+    <Content Include="TodoAppZek\static\images\False.png" />
+    <Content Include="TodoAppZek\static\images\True.png" />
     <Content Include="TodoAppZek\templates\index.html" />
     <Content Include="TodoAppZek\templates\searchlist.html" />
     <Content Include="TodoAppZek\templates\update.html" />
