@@ -4,6 +4,7 @@ from pymongo import MongoClient
 from flask_pymongo import PyMongo
 import json
 import os
+import datetime
 
 from bson.objectid import ObjectId
 from flask import jsonify, request
@@ -14,7 +15,7 @@ app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/todo"
 mongo = PyMongo(app)
 
 title = "TODO sample application with Flask and MongoDB"
-heading = "TODO Reminder with Flask and MongoDB"
+heading = "ZB TODOAPP-- "
 
 client = MongoClient("mongodb://127.0.0.1:27017") #host uri
 db = client.mymongodb    #Select the database
@@ -46,7 +47,7 @@ def addTodo():
 	#Adding a Task
 	name = request.json["name"]
 	desc = request.json["desc"]
-	created_at = request.json["created_at"]
+	created_at = datetime.datetime.now()#request.json["created_at"]
 	
 
 	try:
@@ -60,9 +61,10 @@ def addTodo():
 def updateTodo(id):
 	name = request.json["name"] ## son
 	desc = request.json["desc"]
-	updated_at = request.json["updated_at"]
+	updated_at = datetime.datetime.now()#request.json["updated_at"]
+	done = request.json["done"]
 	try:
-		todos.update({"_id":ObjectId(id)}, {'$set':{ "name":name, "desc":desc,"updated_at":updated_at }})
+		todos.update({"_id":ObjectId(id)}, {'$set':{ "name":name, "desc":desc,"updated_at":updated_at ,"done":done}})
 		return "Updated todo"
 
 	except:
@@ -126,9 +128,9 @@ def action():
 	#Adding a Task
 	name = request.values.get("name")
 	desc = request.values.get("desc")
-	created_at = request.values.get("created_at")
-	updated_at = request.values.get("updated_at")
-	todos.insert({ "name":name, "desc":desc, "created_at":created_at, "updated_at":updated_at, "done":"no"})
+	created_at = datetime.datetime.now()#request.values.get("created_at")
+	#updated_at = ""#datetime.datetime.now()#request.values.get("updated_at")
+	todos.insert({ "name":name, "desc":desc, "created_at":created_at, "done":"no"})
 	return redirect("/list")
 
 
@@ -152,10 +154,10 @@ def action3():
 	#Updating a Task with various references
 	name = request.values.get("name")
 	desc = request.values.get("desc")
-	created_at = request.values.get("created_at")
-	updated_at = request.values.get("updated_at")
+	#created_at = request.values.get("created_at")
+	updated_at = datetime.datetime.now()#request.values.get("updated_at")
 	id = request.values.get("_id")
-	todos.update({"_id":ObjectId(id)}, {'$set':{ "name":name, "desc":desc, "created_at":created_at, "updated_at":updated_at }})
+	todos.update({"_id":ObjectId(id)}, {'$set':{ "name":name, "desc":desc, "updated_at":updated_at }})
 	return redirect("/")
 
 @app.route("/search", methods=['GET'])

@@ -29,18 +29,7 @@
 			<td>Description</td>
 			<td> : </td>
 			<td><textarea type="text" name="desc" rows=3 cols=30 placeholder="{{ task['desc'] }}"> {{ task['desc'] }} </textarea></td>
-		</tr>
-		<tr>
-			<td>CreateDate</td>
-			<td> : </td>
-			<td><input type="datetime-local" name="created_at" value="{{ task['created_at'] }}" placeholder="{{ task['created_at'] }}"></td>
-		</tr>
 
-		<tr>
-			<td>UpdateDate</td>
-			<td> : </td>
-			<td><input type="datetime-local" name="updated_at" value="{{ task['updated_at'] }}" placeholder="{{ task['updated_at'] }}"></td>
-		</tr>
 	</table>
 	{% endfor %}
 		<button type="submit"> Update Task </button>
