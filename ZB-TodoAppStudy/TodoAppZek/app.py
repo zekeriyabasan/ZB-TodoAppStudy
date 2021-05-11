@@ -130,7 +130,7 @@ def action():
 	desc = request.values.get("desc")
 	created_at = datetime.datetime.now()#request.values.get("created_at")
 	#updated_at = ""#datetime.datetime.now()#request.values.get("updated_at")
-	todos.insert({ "Title":Title, "desc":desc, "created_at":created_at, "is_completed":False})
+	todos.insert({ "Title":Title, "desc":desc, "created_at":created_at,"updated_at":"", "is_completed":False})
 	return redirect("/list")
 
 
