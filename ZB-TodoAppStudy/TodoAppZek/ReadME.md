@@ -26,6 +26,6 @@ Postman üzerinde;
 
 >   http://127.0.0.1:5000/getTodos adresine GET isteğinde bulunup todoları görebilirsiniz
 >   http://127.0.0.1:5000/addTodo adresine POST isteğinde bulunup Json formatında verdiğiniz todoyu ekleyebilirsiniz {"Title":"newtodo","desc":"todo desc"}
->   http://127.0.0.1:5000/updateTodo/( güncellemek istediğiniz Todo id sini buraya girip ) PUT isteğinde bulunup tuduyu güncelleyebilirsiniz.  {"Title":"newtodo","desc":"todo desc"}
+>   http://127.0.0.1:5000/updateTodo/güncellemek istediğiniz Todo id sini buraya girip  PUT isteğinde bulunup tuduyu güncelleyebilirsiniz.  {"Title":"newtodo","desc":"todo desc"}
 >   http://127.0.0.1:5000/deleteTodo adresine DELETE isteğinde bulunup json formatında verdiğiniz id e göre todoyu silebilirsiniz. {"_id":"609ad36099273de69e742a12"} gibi
 "
