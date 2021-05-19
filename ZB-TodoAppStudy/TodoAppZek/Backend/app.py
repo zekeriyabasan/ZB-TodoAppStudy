@@ -9,7 +9,9 @@ import datetime
 from bson.objectid import ObjectId
 from flask import jsonify, request
 
+from flask_cors import CORS,cross_origin
 app = Flask(__name__)
+CORS(app,resources={r"/*":{"origins":"*"}})
 
 app.config["MONGO_URI"] = "mongodb://127.0.0.1:27017/todo"
 mongo = PyMongo(app)
@@ -30,6 +32,7 @@ def redirect_url():
 
 #----------------------------GET TODOS----------------------------
 @app.route("/getTodos", methods=['GET'])
+
 def getTodos():
 	Todos = todos.find()
 	todoList = []
@@ -43,6 +46,7 @@ def getTodos():
 
 #--------------------------ADD TODO---------------------------------------------------------
 @app.route("/addTodo", methods=['POST'])
+
 def addTodo():
 	#Adding a Task
 	Title = request.json["Title"]
@@ -58,6 +62,7 @@ def addTodo():
 
 #-------------------------UPDATE TODO-------------------------------------
 @app.route("/updateTodo/<id>", methods=['PUT'])
+
 def updateTodo(id):
 	Title = request.json["Title"] ## son
 	desc = request.json["desc"]
@@ -71,11 +76,12 @@ def updateTodo(id):
 		return "Update operation failed"
 
 #------------------DELETE TODO------------------------------------------
-@app.route("/deleteTodo",methods=["DELETE"])
-def delete():
-	key = request.json["_id"]
+@app.route("/deleteTodo/<id>",methods=["DELETE"])
+
+def delete(id):
+	#key = request.json["_id"]
 	try:
-		todos.remove({"_id":ObjectId(key)})
+		todos.remove({"_id":ObjectId(id)})
 		return "Deleted todo"
 	except:
 		return "Delete operation failed"
@@ -87,6 +93,7 @@ def delete():
 
 
 @app.route("/list")
+
 def lists():
 	#Display the all Tasks
 	todos_l = todos.find()
@@ -96,6 +103,7 @@ def lists():
 
 @app.route("/")
 @app.route("/uncompleted")
+
 def tasks():
 	#Display the Uncompleted Tasks
 	todos_l = todos.find({"is_completed":False})
@@ -104,6 +112,7 @@ def tasks():
 
 
 @app.route("/completed")
+
 def completed():
 	#Display the Completed Tasks
 	todos_l = todos.find({"is_completed":True})
@@ -111,6 +120,7 @@ def completed():
 	return render_template('index.html',a3=a3,todos=todos_l,t=title,h=heading)
 
 @app.route("/is_completed")
+
 def done():
 	#Done-or-not ICON
 	id = request.values.get("_id")
@@ -124,6 +134,7 @@ def done():
 	return redirect(redir)
 
 @app.route("/action", methods=['POST'])
+
 def action():
 	#Adding a Task
 	Title = request.values.get("Title")
@@ -135,6 +146,7 @@ def action():
 
 
 @app.route("/remove")
+
 def remove():
 	#Deleting a Task with various references
 	key = request.values.get("_id")
@@ -142,6 +154,7 @@ def remove():
 	return redirect("/")
 
 @app.route("/update")
+
 def update():
 	id = request.values.get("_id")
 	task = todos.find({"_id":ObjectId(id)})
@@ -150,6 +163,7 @@ def update():
 
 
 @app.route("/action3", methods=['POST'])
+
 def action3():
 	#Updating a Task with various references
 	Title = request.values.get("Title")
@@ -161,6 +175,7 @@ def action3():
 	return redirect("/")
 
 @app.route("/search", methods=['GET'])
+
 def search():
 	#Searching a Task with various references
 

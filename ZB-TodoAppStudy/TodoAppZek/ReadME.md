@@ -11,6 +11,8 @@ Proje ortamına Flask, bson & pymongo u install edin
 
 >pip install pymongo
 
+>pip install flask_cors 
+
 Mongodb örneğini çalıştırmadan önce, bir veri klasörü oluşturup  komut isteminde aşağıdaki komutu çalıştırın.
 
 "C:\Program Files\MongoDB\Server\4.0\bin\mongod.exe" --dbpath="C:\mongo-data"

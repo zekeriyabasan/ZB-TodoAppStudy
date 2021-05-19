@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>b20639f0-9fe6-414d-be69-fd4ae3bd500c</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>TodoAppZek\app.py</StartupFile>
+    <StartupFile>TodoAppZek\Backend\app.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,25 +22,26 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="TodoAppZek\" />
-    <Folder Include="TodoAppZek\static\" />
-    <Folder Include="TodoAppZek\static\assets\" />
-    <Folder Include="TodoAppZek\static\images\" />
-    <Folder Include="TodoAppZek\templates\" />
+    <Folder Include="TodoAppZek\Backend\" />
+    <Folder Include="TodoAppZek\Backend\static\" />
+    <Folder Include="TodoAppZek\Backend\static\assets\" />
+    <Folder Include="TodoAppZek\Backend\static\images\" />
+    <Folder Include="TodoAppZek\Backend\templates\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TodoAppZek\app.py" />
+    <Compile Include="TodoAppZek\Backend\app.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TodoAppZek\ReadME.md" />
-    <Content Include="TodoAppZek\static\assets\emoji.css" />
-    <Content Include="TodoAppZek\static\assets\emoji.js" />
-    <Content Include="TodoAppZek\static\assets\style.css" />
-    <Content Include="TodoAppZek\static\assets\twemoji.min.js" />
-    <Content Include="TodoAppZek\static\images\False.png" />
-    <Content Include="TodoAppZek\static\images\True.png" />
-    <Content Include="TodoAppZek\templates\index.html" />
-    <Content Include="TodoAppZek\templates\searchlist.html" />
-    <Content Include="TodoAppZek\templates\update.html" />
+    <Content Include="TodoAppZek\Backend\static\assets\emoji.css" />
+    <Content Include="TodoAppZek\Backend\static\assets\emoji.js" />
+    <Content Include="TodoAppZek\Backend\static\assets\style.css" />
+    <Content Include="TodoAppZek\Backend\static\assets\twemoji.min.js" />
+    <Content Include="TodoAppZek\Backend\static\images\False.png" />
+    <Content Include="TodoAppZek\Backend\static\images\True.png" />
+    <Content Include="TodoAppZek\Backend\templates\index.html" />
+    <Content Include="TodoAppZek\Backend\templates\searchlist.html" />
+    <Content Include="TodoAppZek\Backend\templates\update.html" />
     <Content Include="TodoAppZek\TodoAppZek.pyproj" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
